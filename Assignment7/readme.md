@@ -26,27 +26,27 @@ I might like to use an event to insert a monthly record into a table that summar
 
 ### I've outlined the code below. I haven't tried it, and almost nothing I write is perfect on the first try, so I don't know what changes I might have to make to get it working right, but it seems like a useful idea.
 
-CREATE EVENT monthly_summary
-ON SCHEDULE EVERY 1 MONTH 
-STARTS '2021-11-01'
-DO BEGIN
-    DECLARE sum_order_total_var;
-    DECLARE sum_invoice_total_var;
+    CREATE EVENT monthly_summary
+    ON SCHEDULE EVERY 1 MONTH 
+    STARTS '2021-11-01'
+    DO BEGIN
+        DECLARE sum_order_total_var;
+        DECLARE sum_invoice_total_var;
 
-    SELECT INTO sum_order_total_var
-    SUM(order_total)
-    FROM orders
-    WHERE order_date > (NOW() - INTERVAL 1 MONTH) AND order_date < NOW();
+        SELECT INTO sum_order_total_var
+        SUM(order_total)
+        FROM orders
+        WHERE order_date > (NOW() - INTERVAL 1 MONTH) AND order_date < NOW();
 
-    SELECT INTO sum_invoice_total_var
-    SUM(invoice_total)
-    FROM invoices
-    WHERE invoice_date > (NOW() - INTERVAL 1 MONTH) AND invoice_date < NOW();
+        SELECT INTO sum_invoice_total_var
+        SUM(invoice_total)
+        FROM invoices
+        WHERE invoice_date > (NOW() - INTERVAL 1 MONTH) AND invoice_date < NOW();
 
-    INSERT INTO monthly_summary VALUES
-    ((NOW() - 1 MONTH), sum_order_total_var, sum_invoice_total_var);
+        INSERT INTO monthly_summary VALUES
+        ((NOW() - 1 MONTH), sum_order_total_var, sum_invoice_total_var);
 
-    END//
+        END//
 
 
 
