@@ -1,7 +1,7 @@
 # ASSIGNMENT 7 No. 1
-## 1. If you were assigned the task of deleting a customer from the customers table as a database administrator,explain the logic you would implement to accomplish this task via a stored program in your readme.md file. 
-## Include the type of stored program and the steps that would be required. 
-## +5 to include implementation in MySQL Workbench. 
+    1. If you were assigned the task of deleting a customer from the customers table as a database administrator,explain the logic you would implement to accomplish this task via a stored program in your readme.md file. 
+    Include the type of stored program and the steps that would be required. 
+    +5 to include implementation in MySQL Workbench. 
 
 A stored procedure that uses an input parameter to specify the customer_id that is to be deleted
 seems like the right answer here. When the procedure is created, the integer passed into the procedure
