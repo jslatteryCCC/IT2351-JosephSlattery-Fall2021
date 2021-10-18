@@ -1,0 +1,1 @@
+CALL deleteCustomer(25);
